@@ -24,6 +24,12 @@
   <ViewUsage
     Name="Mensajes1"
     ViewObjectName="com.campofrio.materiales.model.bc.views.MensajesVO"/>
+  <ViewUsage
+    Name="EstadosRO1"
+    ViewObjectName="com.campofrio.materiales.model.bc.views.readonly.EstadosRO"/>
+  <ViewUsage
+    Name="Mensajes2"
+    ViewObjectName="com.campofrio.materiales.model.bc.views.MensajesVO"/>
   <ViewLinkUsage
     Name="MensajesPeticionLK1"
     ViewLinkObjectName="com.campofrio.materiales.model.bc.vlinks.MensajesPeticionLK"

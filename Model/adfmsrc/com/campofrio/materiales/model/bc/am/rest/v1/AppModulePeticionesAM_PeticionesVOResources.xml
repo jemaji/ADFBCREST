@@ -5,27 +5,13 @@
   <parameters/>
   <executables>
     <variableIterator id="variables"/>
-    <iterator Binds="Peticiones1" RangeSize="10" DataControl="AppModulePeticionesAMDataControl"
-              id="Peticiones1Iterator"/>
+    <iterator Binds="Peticiones1" RangeSize="5" DataControl="AppModulePeticionesAMDataControl"
+              id="Peticiones1Iter"/>
   </executables>
   <bindings>
-    <tree IterBinding="Peticiones1Iterator" id="Peticiones1">
-      <nodeDefinition DefName="com.campofrio.materiales.model.bc.views.PeticionesVO" Name="Peticiones10">
-        <AttrNames>
-          <Item Value="Asunto"/>
-          <Item Value="AdjuntoBlob"/>
-          <Item Value="AdjuntoClob"/>
-          <Item Value="AdjuntoExtension"/>
-          <Item Value="AdjuntoNombre"/>
-          <Item Value="Descripcion"/>
-          <Item Value="EstadosPeticionId"/>
-          <Item Value="FechaCreacion"/>
-          <Item Value="FechaModificacion"/>
-          <Item Value="Id"/>
-          <Item Value="UsuarioCreacion"/>
-          <Item Value="UsuarioModificacion"/>
-        </AttrNames>
-      </nodeDefinition>
+    <tree IterBinding="Peticiones1Iter" id="peticion" AccessorFolder="Always">
+      <nodeDefinition DefName="com.campofrio.materiales.model.bc.views.PeticionesVO"
+                      Name="com.campofrio.materiales.model.bc.views.PeticionesVO"/>
     </tree>
   </bindings>
 </pageDefinition>

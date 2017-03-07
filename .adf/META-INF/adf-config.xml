@@ -11,8 +11,7 @@
       </amconfig-overrides>
     </startup>
     <versions>
-      <version name="v2" displayName="2"/>
-      <version name="v1" displayName="1" lifecycle="deprecated"/>
+      <version name="v1" displayName="1"/>
     </versions>
   </adf-adfm-config>
   <adf:adf-properties-child xmlns="http://xmlns.oracle.com/adf/config/properties">
