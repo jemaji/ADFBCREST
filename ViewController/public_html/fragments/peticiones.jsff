@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <c:set var="viewcontrollerBundle" value="#{adfBundle['com.campofrio.materiales.view.ViewControllerBundle']}"/>
+    <af:panelGroupLayout layout="scroll" id="pgl1" styleClass="AFStretchWidth">
+        <af:panelBox id="pgl6">
+            <af:inputText label="Overload repeticiones" id="it1" value="#{pageFlowScope.repeticiones}"
+                          autoSubmit="true">
+                <af:convertNumber integerOnly="true" maxIntegerDigits="3"/>
+            </af:inputText>
+            <af:button actionListener="#{bindings.createXPeticionesWithXMensajesEachOne.execute}"
+                       text="Overload request" id="b1" disabled="#{empty pageFlowScope.repeticiones}"
+                       partialTriggers="it1"/>
+            <af:button actionListener="#{bindings.deleteAllPeticiones.execute}" text="Delete all" id="b2"/>
+        </af:panelBox>
+        <af:panelGroupLayout id="pgl4" layout="horizontal" styleClass="AFStretchWidth" valign="top">
+            <af:panelBox text="#{viewcontrollerBundle.TITULO_BUSQUEDA_PETICIONES}" id="pb1" styleClass="AFStretchWidth">
+                <f:facet name="toolbar"/>
+                <af:query id="qryId1" headerText="#{viewcontrollerBundle.TITULO_BUSQUEDA}" disclosed="true"
+                          value="#{bindings.PeticionesVOCriteriaQuery.queryDescriptor}"
+                          model="#{bindings.PeticionesVOCriteriaQuery.queryModel}"
+                          queryListener="#{bindings.PeticionesVOCriteriaQuery.processQuery}"
+                          queryOperationListener="#{bindings.PeticionesVOCriteriaQuery.processQueryOperation}"
+                          resultComponentId="::pc1:resId1" rows="2" maxColumns="2" labelWidth="150px"/>
+                <af:panelBox text="#{viewcontrollerBundle.TITULO_RESULTADOS}" id="pb2">
+                    <f:facet name="toolbar"/>
+                    <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                        <f:facet name="menus"/>
+                        <f:facet name="toolbar"/>
+                        <f:facet name="statusbar"/>
+                        <af:table value="#{bindings.Peticiones1.collectionModel}" var="row"
+                                  rows="#{bindings.Peticiones1.rangeSize}"
+                                  emptyText="#{bindings.Peticiones1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.Peticiones1.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.Peticiones1.collectionModel.makeCurrent}"
+                                  rowSelection="single" fetchSize="#{bindings.Peticiones1.rangeSize}"
+                                  filterModel="#{bindings.PeticionesVOCriteriaQuery.queryDescriptor}"
+                                  queryListener="#{bindings.PeticionesVOCriteriaQuery.processQuery}" varStatus="vs"
+                                  id="resId1" partialTriggers=":::b6 :::b9 :::b7 :::b1"
+                                  columnStretching="column:resId1c1">
+                            <af:column sortProperty="#{bindings.Peticiones1.hints.Id.name}" filterable="true"
+                                       sortable="true" headerText="#{bindings.Peticiones1.hints.Id.label}" id="resId1c6"
+                                       width="50">
+                                <af:outputText value="#{row.bindings.Id.inputValue}" shortDesc="#{bindings.Peticiones1.hints.Id.tooltip}"
+                                               id="ot6">
+                                    <af:convertNumber groupingUsed="false"
+                                                      pattern="#{bindings.Peticiones1.hints.Id.format}"/>
+                                </af:outputText>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.Peticiones1.hints.Asunto.name}" filterable="true"
+                                       sortable="true" headerText="#{viewcontrollerBundle.LABEL_COLUMN_ASUNTO}"
+                                       id="resId1c1">
+                                <af:outputText value="#{row.Asunto}"
+                                               shortDesc="#{bindings.Peticiones1.hints.Asunto.tooltip}" id="ot1"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.Peticiones1.hints.FechaCreacion.name}" sortable="true"
+                                       headerText="#{bindings.Peticiones1.hints.FechaCreacion.label}" id="c2"
+                                       width="130">
+                                <af:outputFormatted value="#{row.bindings.FechaCreacion.inputValue}" id="of1">
+                                    <af:convertDateTime pattern="#{bindings.Peticiones1.hints.FechaCreacion.format}"/>
+                                </af:outputFormatted>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.Peticiones1.hints.EstadosPeticionId.name}"
+                                       filterable="true" sortable="true"
+                                       headerText="#{bindings.Peticiones1.hints.EstadosPeticionId.label}" id="c1"
+                                       width="80">
+                                <af:selectOneChoice value="#{row.bindings.EstadosPeticionId.inputValue}"
+                                                    label="#{row.bindings.EstadosPeticionId.label}"
+                                                    required="#{bindings.Peticiones1.hints.EstadosPeticionId.mandatory}"
+                                                    shortDesc="#{bindings.Peticiones1.hints.EstadosPeticionId.tooltip}"
+                                                    id="soc1" readOnly="true">
+                                    <f:selectItems value="#{row.bindings.EstadosPeticionId.items}" id="si1"/>
+                                    <f:validator binding="#{row.bindings.EstadosPeticionId.validator}"/>
+                                </af:selectOneChoice>
+                            </af:column>
+                            <af:column headerText="#{bindings.Peticiones1.hints.AdjuntoBlob.label}" id="c3">
+                                <af:image source="data:image/png;base64,#{peticionesMaterialBean.imageArray}"
+                                          shortDesc="#{row.bindings.AdjuntoNombre.inputValue}" id="i1"
+                                          inlineStyle="height:30px; width:30px;"></af:image>
+                            </af:column>
+                        </af:table>
+                    </af:panelCollection>
+                    <af:panelGroupLayout id="pgl3" layout="horizontal">
+                        <af:outputText value="#{viewcontrollerBundle.LABEL_NUM_PETICIONES}" id="ot9"/>
+                        <af:spacer width="20" height="10" id="s1"/>
+                        <af:outputText value="#{bindings.Peticiones1Iterator.estimatedRowCount}" id="ot10"
+                                       partialTriggers="qryId1 b9"/>
+                    </af:panelGroupLayout>
+                </af:panelBox>
+                <af:button actionListener="#{bindings.CreateInsert.execute}"
+                           text="#{viewcontrollerBundle.BOTON_NUEVA_PETICION}" id="b9"/>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                          binding="#{peticionesMaterialBean.popUpConfirmation}">
+                    <af:dialog id="d1" type="cancel">
+                        <f:facet name="buttonBar">
+                            <af:button text="#{viewcontrollerBundle.ACEPTAR}" disabled="#{!bindings.Delete.enabled}"
+                                       id="b3" action="#{peticionesMaterialBean.hidePopUpConfirmaton}">
+                                <af:resetActionListener/>
+                            </af:button>
+                        </f:facet>
+                        <af:outputText value="#{viewcontrollerBundle.DELETE_CONFIRMATION}" id="ot2"/>
+                    </af:dialog>
+                </af:popup>
+                <af:button text="#{viewcontrollerBundle.DELETE}" id="b6" immediate="true"
+                           disabled="#{bindings.Peticiones1.estimatedRowCount &lt;= 0}"
+                           partialTriggers="pc1:resId1 qryId1">
+                    <af:showPopupBehavior popupId="p1"/>
+                </af:button>
+            </af:panelBox>
+            <af:panelBox id="pgl5" text="#{viewcontrollerBundle.TITULO_DETALLE_PETICION}" styleClass="AFStretchWidth">
+                <af:panelFormLayout id="pfl1" labelWidth="130px" fieldWidth="600px">
+                    <af:panelLabelAndMessage label="#{viewcontrollerBundle.LABEL_COLUMN_ASUNTO}" id="plam1">
+                        <af:inputText value="#{bindings.Asunto.inputValue}"
+                                      label="#{viewcontrollerBundle.LABEL_COLUMN_ASUNTO}"
+                                      required="#{bindings.Asunto.hints.mandatory}"
+                                      columns="#{bindings.Asunto.hints.displayWidth}"
+                                      maximumLength="#{bindings.Asunto.hints.precision}"
+                                      shortDesc="#{bindings.Asunto.hints.tooltip}" id="it3" simple="true">
+                            <f:validator binding="#{bindings.Asunto.validator}"/>
+                        </af:inputText>
+                        <f:facet name="end">
+                            <af:spacer width="40" height="10" id="s2"/>
+                            <af:inputText value="#{bindings.Id.inputValue}" label="#{bindings.Id.hints.label}"
+                                          required="#{bindings.Id.hints.mandatory}"
+                                          columns="#{bindings.Id.hints.displayWidth}"
+                                          maximumLength="#{bindings.Id.hints.precision}"
+                                          shortDesc="#{bindings.Id.hints.tooltip}" id="it4" readOnly="true">
+                                <f:validator binding="#{bindings.Id.validator}"/>
+                                <af:convertNumber groupingUsed="false" pattern="#{bindings.Id.format}"/>
+                            </af:inputText>
+                        </f:facet>
+                    </af:panelLabelAndMessage>
+                    <af:inputText value="#{bindings.Descripcion.inputValue}" label="#{bindings.Descripcion.hints.label}"
+                                  required="#{bindings.Descripcion.hints.mandatory}"
+                                  columns="#{bindings.Descripcion.hints.displayWidth}"
+                                  rows="#{bindings.Descripcion.hints.displayHeight}"
+                                  maximumLength="#{bindings.Descripcion.hints.precision}"
+                                  shortDesc="#{bindings.Descripcion.hints.tooltip}" id="it2">
+                        <f:validator binding="#{bindings.Descripcion.validator}"/>
+                    </af:inputText>
+                    <af:spacer height="1" width="1" id="s4"/>
+                    <af:panelLabelAndMessage label="#{viewcontrollerBundle.PETICION_ADJUNTO}" id="plam2">
+                        <af:inputFile simple="true" label="#{viewcontrollerBundle.PETICION_ADJUNTO}" id="if1"
+                                      value="#{peticionesMaterialBean.file}"/>
+                        <f:facet name="end">
+                            <af:button text="#{viewcontrollerBundle.PETICION_BOTON_SUBIR_ADJUNTO}" id="cb11"
+                                       action="#{peticionesMaterialBean.uploadAttach}"/>
+                        </f:facet>
+                    </af:panelLabelAndMessage>
+                </af:panelFormLayout>
+                <af:panelFormLayout id="pfl2" rows="2" maxColumns="2" labelWidth="130px" fieldWidth="300px">
+                    <f:facet name="footer">
+                        <af:panelGroupLayout layout="horizontal" id="pgl2">
+                            <af:button actionListener="#{bindings.Commit.execute}" text="Commit" id="b7"
+                                       action="#{peticionesMaterialBean.actionCommit}"/>
+                            <af:button actionListener="#{bindings.Rollback.execute}" text="Rollback" immediate="true"
+                                       id="b8"/>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <af:inputText value="#{bindings.UsuarioCreacion.inputValue}"
+                                  label="#{bindings.UsuarioCreacion.hints.label}"
+                                  required="#{bindings.UsuarioCreacion.hints.mandatory}"
+                                  columns="#{bindings.UsuarioCreacion.hints.displayWidth}"
+                                  maximumLength="#{bindings.UsuarioCreacion.hints.precision}"
+                                  shortDesc="#{bindings.UsuarioCreacion.hints.tooltip}" id="it5" readOnly="true">
+                        <f:validator binding="#{bindings.UsuarioCreacion.validator}"/>
+                    </af:inputText>
+                    <af:selectOneChoice value="#{bindings.EstadosPeticionId1.inputValue}"
+                                        label="#{bindings.EstadosPeticionId1.label}"
+                                        required="#{bindings.EstadosPeticionId1.hints.mandatory}"
+                                        shortDesc="#{bindings.EstadosPeticionId1.hints.tooltip}" id="soc2"
+                                        readOnly="true">
+                        <f:selectItems value="#{bindings.EstadosPeticionId1.items}" id="si2"/>
+                        <f:validator binding="#{bindings.EstadosPeticionId1.validator}"/>
+                    </af:selectOneChoice>
+                    <af:spacer width="10" height="28" id="s3"/>
+                    <af:inputDate value="#{bindings.FechaCreacion.inputValue}"
+                                  label="#{bindings.FechaCreacion.hints.label}"
+                                  required="#{bindings.FechaCreacion.hints.mandatory}"
+                                  columns="#{bindings.FechaCreacion.hints.displayWidth}"
+                                  shortDesc="#{bindings.FechaCreacion.hints.tooltip}" id="id3" readOnly="true">
+                        <f:validator binding="#{bindings.FechaCreacion.validator}"/>
+                        <af:convertDateTime pattern="#{bindings.FechaCreacion.format}"/>
+                    </af:inputDate>
+                </af:panelFormLayout>
+                <f:facet name="toolbar"/>
+                <af:region value="#{bindings.taskflowmensajespeticion1.regionModel}" id="r1"/>
+            </af:panelBox>
+        </af:panelGroupLayout>
+    </af:panelGroupLayout>
+</ui:composition>

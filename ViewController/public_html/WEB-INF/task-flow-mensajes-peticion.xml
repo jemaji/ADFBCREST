@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="task-flow-mensajes-peticion">
+    <default-activity>mensajesPeticion</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <managed-bean id="__1">
+      <managed-bean-name>MensajesBean</managed-bean-name>
+      <managed-bean-class>com.campofrio.materiales.view.beans.saveMessage</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__2">
+      <managed-bean-name>mensajesBean</managed-bean-name>
+      <managed-bean-class>com.campofrio.materiales.view.beans.MensajesBean</managed-bean-class>
+      <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <view id="mensajesPeticion">
+      <page>/fragments/mensajesPeticion.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MensajesPeticionLK"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  EntityAssociation="com.campofrio.materiales.model.bc.assocs.MensajesPeticionAS">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.campofrio.materiales.model.bc.vlinks.MensajesPeticionLK_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="Peticiones"
+    Cardinality="1"
+    Source="true"
+    Owner="com.campofrio.materiales.model.bc.views.PeticionesVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_accessor" Value="true"/>
+      <Attr Name="_finderName" Value="Peticiones"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.campofrio.materiales.model.bc.views.PeticionesVO.Id"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="Mensajes"
+    Cardinality="-1"
+    Owner="com.campofrio.materiales.model.bc.views.MensajesVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="Mensajes"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.campofrio.materiales.model.bc.views.MensajesVO.PeticionesId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.campofrio.materiales.model.ModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

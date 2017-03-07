@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="peticionesPageDef"
+                Package="fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Peticiones1" RangeSize="25" DataControl="AppModulePeticionesAMDataControl"
+              id="Peticiones1Iterator" Refresh="ifNeeded"/>
+    <searchRegion Criteria="PeticionesVOCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="Peticiones1Iterator" id="PeticionesVOCriteriaQuery"/>
+    <taskFlow id="taskflowmensajespeticion1"
+              taskFlowId="/WEB-INF/task-flow-mensajes-peticion.xml#task-flow-mensajes-peticion" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="Peticiones1Iterator" id="Peticiones1">
+      <nodeDefinition DefName="com.campofrio.materiales.model.bc.views.PeticionesVO" Name="Peticiones10">
+        <AttrNames>
+          <Item Value="FechaCreacion"/>
+          <Item Value="EstadosPeticionId"/>
+          <Item Value="AdjuntoBlob"/>
+          <Item Value="AdjuntoClob"/>
+          <Item Value="AdjuntoExtension"/>
+          <Item Value="AdjuntoNombre"/>
+          <Item Value="Asunto"/>
+          <Item Value="Id"/>
+          <Item Value="Descripcion"/>
+          <Item Value="FechaModificacion"/>
+          <Item Value="UsuarioCreacion"/>
+          <Item Value="UsuarioModificacion"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="Peticiones1Iterator" id="Asunto">
+      <AttrNames>
+        <Item Value="Asunto"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Peticiones1Iterator" id="EstadosPeticionId">
+      <AttrNames>
+        <Item Value="EstadosPeticionId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Peticiones1Iterator" id="FechaCreacion">
+      <AttrNames>
+        <Item Value="FechaCreacion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Peticiones1Iterator" id="Id">
+      <AttrNames>
+        <Item Value="Id"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Peticiones1Iterator" id="UsuarioCreacion">
+      <AttrNames>
+        <Item Value="UsuarioCreacion"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="Peticiones1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Commit" RequiresUpdateModel="true" Action="commitTransaction"
+            DataControl="AppModulePeticionesAMDataControl"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction"
+            DataControl="AppModulePeticionesAMDataControl"/>
+    <list IterBinding="Peticiones1Iterator" StaticList="false" Uses="LOV_EstadosPeticionId" id="EstadosPeticionId1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="Peticiones1Iterator" id="Descripcion">
+      <AttrNames>
+        <Item Value="Descripcion"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="Peticiones1Iterator" id="Delete" RequiresUpdateModel="false" Action="removeCurrentRow"/>
+    <attributeValues IterBinding="Peticiones1Iterator" id="AdjuntoBlob">
+      <AttrNames>
+        <Item Value="AdjuntoBlob"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Peticiones1Iterator" id="AdjuntoClob">
+      <AttrNames>
+        <Item Value="AdjuntoClob"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Peticiones1Iterator" id="AdjuntoNombre">
+      <AttrNames>
+        <Item Value="AdjuntoNombre"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Peticiones1Iterator" id="AdjuntoExtension">
+      <AttrNames>
+        <Item Value="AdjuntoExtension"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="createXPeticionesWithXMensajesEachOne" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="createXPeticionesWithXMensajesEachOne" IsViewObjectMethod="false"
+                  DataControl="AppModulePeticionesAMDataControl"
+                  InstanceName="data.AppModulePeticionesAMDataControl.dataProvider">
+      <NamedData NDName="x" NDValue="#{pageFlowScope.repeticiones}" NDType="java.lang.Integer"/>
+    </methodAction>
+    <methodAction id="deleteAllPeticiones" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="deleteAllPeticiones" IsViewObjectMethod="false"
+                  DataControl="AppModulePeticionesAMDataControl"
+                  InstanceName="data.AppModulePeticionesAMDataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

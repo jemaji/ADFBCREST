@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.20.47" id="ResourceRegistry"
+             SeparateXMLFiles="false" Package="com.campofrio.materiales.model" ClientType="Generic">
+    <pageMap>
+        <page path="v1_Peticiones" usageId="AppModulePeticionesAM_PeticionesVOResources"/>
+    </pageMap>
+    <dataControlUsages>
+        <BC4JDataControl id="AppModulePeticionesAMDataControl" Package="com.campofrio.materiales.model.bc.am"
+                         FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                         SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                         SupportsSortCollection="true" Configuration="AppModulePeticionesAMLocal" syncMode="Immediate"
+                         xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    </dataControlUsages>
+    <pageDefinitionUsages>
+    <page id="AppModulePeticionesAM_PeticionesVOResources"
+          path="com.campofrio.materiales.model.bc.am.rest.v1.AppModulePeticionesAM_PeticionesVOResources"/>
+  </pageDefinitionUsages>
+</Application>

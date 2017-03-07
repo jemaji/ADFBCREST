@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="mensajesPeticionPageDef"
+                Package="fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Mensajes1" RangeSize="25" DataControl="AppModulePeticionesAMDataControl" id="Mensajes1Iterator"/>
+    <searchRegion Binds="Mensajes1Iterator" Criteria="" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="Mensajes1Query"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="Mensajes1Iterator" id="Mensajes1">
+      <nodeDefinition DefName="com.campofrio.materiales.model.bc.views.MensajesVO" Name="Mensajes10">
+        <AttrNames>
+          <Item Value="CuerpoMensaje"/>
+          <Item Value="FechaCreacion"/>
+          <Item Value="UsuarioCreacion"/>
+          <Item Value="Sentido"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="Mensajes1Iterator" id="CuerpoMensaje">
+      <AttrNames>
+        <Item Value="CuerpoMensaje"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Mensajes1Iterator" id="FechaCreacion">
+      <AttrNames>
+        <Item Value="FechaCreacion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Mensajes1Iterator" id="FechaLectura">
+      <AttrNames>
+        <Item Value="FechaLectura"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Mensajes1Iterator" id="UsuarioCreacion">
+      <AttrNames>
+        <Item Value="UsuarioCreacion"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Mensajes1Iterator" id="UsuarioModificacion">
+      <AttrNames>
+        <Item Value="UsuarioModificacion"/>
+      </AttrNames>
+    </attributeValues>
+    <action IterBinding="Mensajes1Iterator" id="CreateInsert" RequiresUpdateModel="true" Action="createInsertRow"/>
+    <action id="Rollback" RequiresUpdateModel="false" Action="rollbackTransaction"
+            DataControl="AppModulePeticionesAMDataControl"/>
+    <action id="Commit" DataControl="AppModulePeticionesAMDataControl" RequiresUpdateModel="true"
+            Action="commitTransaction"/>
+  </bindings>
+</pageDefinition>
