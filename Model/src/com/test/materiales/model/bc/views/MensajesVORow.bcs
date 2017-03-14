@@ -1,0 +1,19 @@
+//Groovy Scripts for com.test.materiales.model.bc.views.MensajesVO
+
+package com.test.materiales.model.bc.views
+
+import oracle.jbo.script.annotation.TransientValueExpression;
+
+@TransientValueExpression(attributeName="FechaCreacion")
+def FechaCreacion_ExpressionScript_Expression()
+{
+adf.currentDateTime
+}
+
+
+@TransientValueExpression(attributeName="FechaModificacion")
+def FechaModificacion_ExpressionScript_Expression()
+{
+adf.currentDateTime
+}
+

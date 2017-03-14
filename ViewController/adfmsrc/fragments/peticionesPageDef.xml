@@ -14,7 +14,7 @@
   </executables>
   <bindings>
     <tree IterBinding="Peticiones1Iterator" id="Peticiones1">
-      <nodeDefinition DefName="com.campofrio.materiales.model.bc.views.PeticionesVO" Name="Peticiones10">
+      <nodeDefinition DefName="com.test.materiales.model.bc.views.PeticionesVO" Name="Peticiones10">
         <AttrNames>
           <Item Value="FechaCreacion"/>
           <Item Value="EstadosPeticionId"/>

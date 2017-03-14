@@ -2,7 +2,7 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
                 xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
                 xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
-  <c:set var="viewcontrollerBundle" value="#{adfBundle['com.campofrio.materiales.view.ViewControllerBundle']}"/>
+  <c:set var="viewcontrollerBundle" value="#{adfBundle['com.test.materiales.view.ViewControllerBundle']}"/>
   <af:panelBox text="#{viewcontrollerBundle.TITULO_MENSAJES}" id="pb1">
     <f:facet name="toolbar"/>
     <af:panelCollection id="pc1" styleClass="AFStretchWidth">

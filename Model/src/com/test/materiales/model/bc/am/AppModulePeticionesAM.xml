@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="AppModulePeticionesAM"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true"
+  ComponentClass="com.test.materiales.model.bc.am.AppModulePeticionesAMImpl"
+  ComponentInterface="com.test.materiales.model.bc.am.common.AppModulePeticionesAM">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.test.materiales.model.bc.am.AppModulePeticionesAM_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="Peticiones1"
+    ViewObjectName="com.test.materiales.model.bc.views.PeticionesVO"/>
+  <ViewUsage
+    Name="Mensajes1"
+    ViewObjectName="com.test.materiales.model.bc.views.MensajesVO"/>
+  <ViewUsage
+    Name="EstadosRO1"
+    ViewObjectName="com.test.materiales.model.bc.views.readonly.EstadosRO"/>
+  <ViewUsage
+    Name="Mensajes2"
+    ViewObjectName="com.test.materiales.model.bc.views.MensajesVO"/>
+  <ViewLinkUsage
+    Name="MensajesPeticionLK1"
+    ViewLinkObjectName="com.test.materiales.model.bc.vlinks.MensajesPeticionLK"
+    SrcViewUsageName="com.test.materiales.model.bc.am.AppModulePeticionesAM.Peticiones1"
+    DstViewUsageName="com.test.materiales.model.bc.am.AppModulePeticionesAM.Mensajes1"
+    Reversed="false"/>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="createXPeticionesWithXMensajesEachOne"
+      MethodName="createXPeticionesWithXMensajesEachOne">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="x"
+        Type="java.lang.Integer"/>
+    </Method>
+    <Method
+      Name="deleteAllPeticiones"
+      MethodName="deleteAllPeticiones">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+    </Method>
+  </ClientInterface>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.test.materiales.model.ModelBundle"/>
+  </ResourceBundle>
+</AppModule>

@@ -10,7 +10,7 @@
   </executables>
   <bindings>
     <tree IterBinding="Mensajes1Iterator" id="Mensajes1">
-      <nodeDefinition DefName="com.campofrio.materiales.model.bc.views.MensajesVO" Name="Mensajes10">
+      <nodeDefinition DefName="com.test.materiales.model.bc.views.MensajesVO" Name="Mensajes10">
         <AttrNames>
           <Item Value="CuerpoMensaje"/>
           <Item Value="FechaCreacion"/>

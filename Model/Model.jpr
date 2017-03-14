@@ -69,7 +69,7 @@
       <string v="oracle.toplink.workbench.addin/toplinkContentSet"/>
    </list>
    <value n="defaultPackage" v="com.campofrio.materiales.model"/>
-   <value n="jbo.JpxName" v="com.campofrio.materiales.model.Model"/>
+   <value n="jbo.JpxName" v="com.test.materiales.model.Model"/>
    <value n="jbo.NoAttrEnumClasses" v="true"/>
    <value n="JboProject" v="true"/>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
